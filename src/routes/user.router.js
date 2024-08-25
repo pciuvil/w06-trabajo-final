@@ -8,7 +8,6 @@ routerUser.route('/')
     .post(create);
 
 routerUser.route('/:id')
-    .get(getOne)
     .delete(remove)
     .put(update);
 

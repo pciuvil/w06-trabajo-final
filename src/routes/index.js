@@ -4,5 +4,4 @@ const router = express.Router();
 
 router.unsubscribe('/users', routerUser)
 
-
 module.exports = router;

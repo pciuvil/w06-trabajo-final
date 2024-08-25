@@ -11,13 +11,6 @@ const create = catchError(async(req, res) => {
     return res.status(201).json(result);
 });
 
-const getOne = catchError(async(req, res) => {
-    const { id } = req.params;
-    const result = await User.findByPk(id);
-    if(!result) return res.sendStatus(404);
-    return res.json(result);
-});
-
 const remove = catchError(async(req, res) => {
     const { id } = req.params;
     const result = await User.destroy({ where: {id} });
@@ -26,6 +19,10 @@ const remove = catchError(async(req, res) => {
 });
 
 const update = catchError(async(req, res) => {
+    
+    const fieldsRemove = [password, email]
+    fieldsRemove.forEach((field) => console.log(fields))
+
     const { id } = req.params;
     const result = await User.update(
         req.body,
@@ -38,7 +35,6 @@ const update = catchError(async(req, res) => {
 module.exports = {
     getAll,
     create,
-    getOne,
     remove,
     update
 }
