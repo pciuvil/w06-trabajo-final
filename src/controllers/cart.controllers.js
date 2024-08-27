@@ -23,6 +23,8 @@ const getAll = catchError(async (req, res) => {
   return res.json(results)
 });
 
+//Create
+
 // const create = catchError(async (req, res) => {
 //   const userId = req.user.id
 //   const result = await Cart.create({...req.body, userId});
@@ -36,6 +38,7 @@ const create = catchError(async (req, res) => {
   const result = await Cart.create(body);
   return res.status(201).json(result);
 });
+
 
 const getOne = catchError(async (req, res) => {
   const userId = req.user.id
@@ -57,6 +60,7 @@ const getOne = catchError(async (req, res) => {
   return res.json(result)
 });
 
+
 const remove = catchError(async (req, res) => {
   const userId = req.user.id
   const { id } = req.params;
@@ -65,6 +69,7 @@ const remove = catchError(async (req, res) => {
   return res.sendStatus(204)
 });
 
+//Update
 const update = catchError(async (req, res) => {
   const userId = req.user.id
   const { id } = req.params;

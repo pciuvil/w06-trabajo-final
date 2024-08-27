@@ -8,8 +8,8 @@ let userId
 //Login
 beforeAll(async () => {
   const user = {
-    email: "carlos@gmail.com",
-    password: "carlos1234"
+    email: "ipena@gmail.com",
+    password: "iuvil12345",
   }
 
   const res = await request(app)
@@ -60,7 +60,7 @@ test("GET -> BASE_URL, should return statusCode 200, and res.body.length === 2",
 //Update
 test("PUT -> 'BASE_URL/:ID', should return statusCode 200, and res.body.firstName === userUpdate.firstName", async () => {
   const userUpdate = {
-    firstName: "Juan",
+    firstName: "Iuvil",
   }
   const res = await request(app)
     .put(`${BASE_URL}/${userId}`)

@@ -13,4 +13,5 @@ router.use("/categories", routerCategory)
 router.use('/products', routerProduct)
 router.use('/cart', verifyJwt, routerCart) //blocked
 router.use('/purchase', verifyJwt, routerPurchase) //blocked
+router.use('')
 module.exports = router;
