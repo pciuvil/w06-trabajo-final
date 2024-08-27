@@ -5,6 +5,7 @@ const BASE_URL = '/api/v1/users'
 let TOKEN
 let userId
 
+//Login
 beforeAll(async () => {
   const user = {
     email: "carlos@gmail.com",
@@ -15,6 +16,7 @@ beforeAll(async () => {
     .post(`${BASE_URL}/login`)
     .send(user)
   TOKEN = res.body.token
+  //console.log(TOKEN);
 })
 
 const user = {
@@ -25,6 +27,7 @@ const user = {
   phone: "+18093224564"
 }
 
+//Create
 test("POST -> BASE_URL, should return statusCode 201, and res.body.firstName === user.firstName", async () => {
 
   const columns = ['firstName', 'lastName', 'email', 'password', 'phone']
@@ -32,15 +35,17 @@ test("POST -> BASE_URL, should return statusCode 201, and res.body.firstName ===
     .post(BASE_URL)
     .send(user)
 
-  userId = res.body.id
+  userId = res.body.id;
 
   expect(res.statusCode).toBe(201)
   expect(res.body).toBeDefined()
-
+  //columns.forEas((column)=>{}
+  //) 
   expect(res.body.firstName).toBeDefined()
   expect(res.body.firstName).toBe(user.firstName)
 })
 
+//GetAll
 test("GET -> BASE_URL, should return statusCode 200, and res.body.length === 2", async () => {
 
   const res = await supertest(app)
@@ -49,17 +54,13 @@ test("GET -> BASE_URL, should return statusCode 200, and res.body.length === 2",
 
   expect(res.statusCode).toBe(200)
   expect(res.body).toBeDefined()
-  expect(res.body).toHaveLength(1)
-
+  expect(res.body).toHaveLength(2)
 })
 
+//Update
 test("PUT -> 'BASE_URL/:ID', should return statusCode 200, and res.body.firstName === userUpdate.firstName", async () => {
   const userUpdate = {
     firstName: "Juan",
-    lastName: "Camil",
-    email: "Jcamil@hotmail.com",
-    password: "jcamil2010",
-    phone: "+1849675432"
   }
   const res = await request(app)
     .put(`${BASE_URL}/${userId}`)
@@ -71,10 +72,11 @@ test("PUT -> 'BASE_URL/:ID', should return statusCode 200, and res.body.firstNam
   expect(res.body.firstName).toBe(userUpdate.firstName)
 })
 
+//Login
 test("POST -> 'BASE_URL/LOGIN', should return status code 200, and res.body.user.email === hits.email", async () => {
   const hits = {
-    email: "iuvil@gmail.com",
-    password: "iuvil1234",
+    email: "ipena@gmail.com",
+    password: "iuvil12345",
   }
 
   const res = await request(app)
@@ -89,6 +91,7 @@ test("POST -> 'BASE_URL/LOGIN', should return status code 200, and res.body.user
 
 })
 
+//TestError
 test("POST -> 'BASE_URL/LOGIN', should return status code 401", async () => {
   const hits = {
     email: "iuvil@gmail.com",
@@ -100,6 +103,7 @@ test("POST -> 'BASE_URL/LOGIN', should return status code 401", async () => {
   expect(res.statusCode).toBe(401)
 })
 
+//Delete
 test("DELETE -> 'BASE_URL/:ID', should return statusCode 204", async () => {
   const res = await request(app)
     .delete(`${BASE_URL}/${userId}`)

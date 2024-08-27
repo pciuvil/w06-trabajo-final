@@ -23,7 +23,6 @@ const remove = catchError(async(req, res) => {
 const update = catchError(async(req, res) => {
     const {id} = req.params;
 
-for(let i in req.body)
 delete req.body.password
 delete req.body.email
 delete req.body.phone
@@ -34,8 +33,7 @@ const result = await User.update(
 );
 
 if (result[0] === 0) return res.sendStatus(404);
-return res.jsano(result[1][0]);
-
+return res.json(result[1][0]);
 });
 
 const login = catchError(async (req, res) => {
@@ -54,7 +52,7 @@ const token = jwt.sign(
     {expiresIn: 'id'}
 )
 
-    return remove.json({user, token})
+return res.json({ user, token })
 })
 
 module.exports = {
