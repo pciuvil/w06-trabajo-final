@@ -44,7 +44,7 @@ const login = catchError(async (req, res) => {
     })
 
 const isValid = await bcrypt.compare(password, user.password)
-    if (!isValid) return res.sendStatus(404)
+    if (!isValid) return res.sendStatus(404).json({"message": "invalid"})
     
 const token = jwt.sign(
     {user},
@@ -52,7 +52,7 @@ const token = jwt.sign(
     {expiresIn: 'id'}
 )
 
-return res.json({ user, token })
+return res.status(200).json({ user, token })
 })
 
 module.exports = {

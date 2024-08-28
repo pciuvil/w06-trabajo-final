@@ -22,12 +22,13 @@ const getAll = catchError(async (req,res) => {
 });
 
 const create = catchError(async (req, res) => {
-  const userId = req.user.id
 
+  const userId = req.user.id
   const cart = await Cart.findAll({
     where: { userId },
     raw: true,
     attributes: ['quantity', 'userId', 'productId']
+    
   });
 
   if (!cart) return res.sendStatus(404)

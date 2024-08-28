@@ -1,6 +1,7 @@
 const request = require("supertest")
 const app = require('../app')
 
+let TOKEN
 let categoryId
 
 const BASE_URL = '/api/v1/categories'

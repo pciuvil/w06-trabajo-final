@@ -13,6 +13,12 @@ const getAll = catchError(async (req, res) => {
         attributes: { exclude: ['updatedAt', 'createdAt'] },
         include: [
           {
+            model: Product,
+            attributes: ['name', 'id']
+          }
+        ],
+        include: [
+          {
             model: Category,
             attributes: ['name', 'id']
           }
